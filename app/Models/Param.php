@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Jurusan extends Model
+class Param extends Model
 {
     //
     protected $fillable = [
-        'kode_jurusan',
-        'nama_jurusan',
+        'param_name',
+        'param_value',
+        'status',
     ];
 }

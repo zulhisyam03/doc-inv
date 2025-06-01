@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSubItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid, Grid2x2Plus } from 'lucide-react';
+import { BookOpen, Folder, LayoutGrid, Settings,Database } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -14,10 +14,30 @@ const mainNavItems: NavItem[] = [
         icon: LayoutGrid,
     },
     {
-        title: 'Master Form',
-        href: 'master-form',
-        icon: Grid2x2Plus,
+        title: 'Parameter',        
+        icon: Settings,
+        href: '/parameter',   
     },
+    {
+        title: 'Template',
+        href: '/template',
+        icon: Database,
+    },
+    {
+        title: 'Data',
+        icon: Folder,
+        subItems: [
+            {
+                title: 'Data 1',
+                href: '/Data1'
+            },
+            {
+                title: 'Data 2',
+                href: '/Data2'
+            }
+            // Tambahkan sub-menu lainnya di sini
+        ]
+    }
 ];
 
 const footerNavItems: NavItem[] = [
