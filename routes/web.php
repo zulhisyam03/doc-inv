@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\Dokumen\ListDocumentController;
 
 Route::get('/', function () {
     return redirect('/login');
@@ -24,6 +25,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/parameter', function () {
         return Inertia::render('masterform/parameter');
     })->name('parameter');
+});
+
+// Document
+Route::middleware(['auth', 'verified'])->group(function() {
+    Route::get('/document/list-document', [ListDocumentController::class, 'index']);
 });
 
 require __DIR__.'/settings.php';

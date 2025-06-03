@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSubItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid, Settings,Database } from 'lucide-react';
+import { BookOpen, Folder, LayoutGrid, Settings, BookText } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -19,9 +19,9 @@ const mainNavItems: NavItem[] = [
         href: '/parameter',   
     },
     {
-        title: 'Template',
-        href: '/template',
-        icon: Database,
+        title: 'Dokumen',
+        href: '/document/list-document',
+        icon: BookText,
     },
     {
         title: 'Data',
