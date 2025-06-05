@@ -12,8 +12,6 @@ import { FormEventHandler } from 'react';
 import { FaRegSave  } from 'react-icons/fa'; // Ikon panah dari react-icons
 
 import AppLayout from '@/layouts/app-layout';
-import ParameterLayout from '@/layouts/master-form/parameter-layout';
-
 
 const { post } = router;
 const submit: FormEventHandler = (e) => {

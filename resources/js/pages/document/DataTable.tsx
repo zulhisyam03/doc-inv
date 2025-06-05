@@ -1,5 +1,7 @@
 // resources/js/Components/DataTable.tsx
 import React from 'react';
+import { Button } from '@/components/ui/button';
+import { Download, SquarePen, Trash2 } from 'lucide-react';
 
 type Props = {
     columns: string[];
@@ -20,6 +22,7 @@ export default function DataTable({ columns, data, currentPage, perPage }: Props
                                 {col}
                             </th>
                         ))}
+                        <th scope="col" className="px-6 py-3">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,7 +39,7 @@ export default function DataTable({ columns, data, currentPage, perPage }: Props
                         
                             let rowClass = 'bg-white border-b hover:bg-gray-100'; //Defaulth Style
                             if(rowStatus !== 'a') {
-                                rowClass = 'bg-red-400 text-white border-b hover:bg-red-500' //Style baris jika nonaktif
+                                rowClass = 'bg-gray-50 text-gray-400 border-b' //Style baris jika nonaktif
                             }
 
                             return(
@@ -44,20 +47,37 @@ export default function DataTable({ columns, data, currentPage, perPage }: Props
                                 <td className="px-6 py-4">
                                     {(index + 1) + ((currentPage - 1) * perPage)}
                                 </td>
-                                {columns.map((col, idx) => (
-                                    <td key={idx} className="px-6 py-4">
-                                        {/* merubah nilai char menjadi kata Aktif/Nonaktif */}
-                                        {(() => {
-                                            const rawValue = String(row[col.toLocaleLowerCase().replace(/\s/g, '_')]);
-                                            const value = String(rawValue || '').trim().toLocaleLowerCase();
-                                            
-                                            if (value === 'a') return 'AKTIF';
-                                            if (value ==='n' || value === '') return 'NONAKTIF';
+                                {columns.map((col, idx) => {
+                                    const rawValue = String(row[col.toLocaleLowerCase().replace(/\s/g, '_')]);
+                                    const value = String(rawValue || '').trim().toLocaleLowerCase();
+                                    
+                                    // Tentukan teks yang akan ditampilkan
+                                    const displayText = value === 'a' ? 'AKTIF' : (value === 'n' || value ==='' ? 'NONAKTIF' : value);
 
-                                            return value;
-                                        })()}
-                                    </td>
-                                ))}
+                                    // tentukan kelas berdasarkan nilai
+                                    const textColorClass = displayText === 'NONAKTIF' ? 'text-red-400': '';
+
+                                    return (
+                                        <td key={idx} className={`px-6 py-4 ${textColorClass}`}>
+                                            {displayText}
+                                        </td>
+                                    );
+                                })}
+                                <td className='px-6 py-4'>
+                                    {/* <Button id='btnEdit' className='cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-105 w-5'> */}
+                                        <span className='flex flex-col-3 gap-x-1 items-center'>
+                                            <Download id='btnUnduh' className='size-5 text-green-400 cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-105'>
+                                                <title>Unduh</title>
+                                            </Download>
+                                            <SquarePen id='btnEdit' className='size-5 text-yellow-400 cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-105'>
+                                                <title>Edit</title>
+                                            </SquarePen>
+                                            <Trash2 id='btnHapus' className='size-5 text-red-400 cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-105'>
+                                                <title>Hapus</title>
+                                            </Trash2>
+                                        </span>
+                                    {/* </Button> */}
+                                </td>
                             </tr>
                             )
                         })
